@@ -1,0 +1,59 @@
+primus:
+  redis:
+    host: 118.31.186.180
+    port: 6379
+    timeout: 5000
+    password: bizredis
+  zookeeper:
+    url: 118.31.186.180:2181
+
+server:
+  port: 16000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://118.31.186.180:7777/eureka/
+  instance:
+    prefer-ip-address: true
+  server:
+    eviction-interval-timer-in-ms: 1000
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+ribbon:
+  ReadTimeout: 30000
+feign:
+  hystrix:
+    enabled: true
+spring:
+  rabbitmq:
+    host: 118.31.186.180
+    port: 5672
+    username: biz
+    password: biz@rabbit
+  jpa:
+    database: mysql
+    generate-ddl: true
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: com.biz.primus.ms.base.jpa.util.UnderscoreNameCustomizer
+  datasource:
+    url: jdbc:mysql://118.31.186.180:3306/primus-dev?createDatabaseIfNotExist=true&useSSL=false&characterEncoding=utf-8
+    username: root
+    password: bizmysql
+    tomcat:
+      max-active: 200
+      max-idle: 30
+      min-idle: 5
+      test-on-borrow: true
+      validation-query: select 1
+      time-between-eviction-runs-millis: 360000
+      initial-size: 5
+
+
